@@ -72,7 +72,54 @@ fn main() {
     }
 
     //memoery management
-    
+    // mutable 
 
+        let mut  muta  = String::from ("hello");
+        muta.push_str("jayesh bro well done");
+         println!("mutable {}",muta);
+    //stack and heap
+
+    fn one(){
+        let num = 21;
+        println!("function one");
+        second(num);
+    }
+    fn second(num:i32){
+        println!("function two");
+        println!("{}",num)
+    }
+    one();
+
+    fn main_fn(){
+        stack_fn();
+        heap_fn();
+        update_string();
+    
+    }
+    fn  stack_fn(){
+        let a:i32 = 21;
+        let b:i32 = 12;
+        let c :i32 = a+b;
+        println!("stack function: The sum of {} and {} is {}",a,b,c)
+
+    }
+    fn heap_fn(){
+        let s1 = String::from("This is first string");
+        let s2 = String::from("This is second string!");
+        let combine = format!("{} {}",s1,s2);
+        println!("Combine: {}",combine);
+
+    }
+    fn update_string(){ 
+        let mut s1 = String::from("update");
+        println!("Before Update: {}", s1);
+        println!("capacity: {} , Length: {} , pointer: {:p}",s1.capacity(),s1.len(),s1.as_ptr());
+        s1.push_str(" additional string data to store so capacity some how changes");
+        println!("updated string: {}",s1);
+        println!("capacity: {} , Length: {} , pointer: {:p}",s1.capacity(),s1.len(),s1.as_ptr());
+
+    }
+
+    main_fn();
     
 }
