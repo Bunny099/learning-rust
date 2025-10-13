@@ -121,5 +121,48 @@ fn main() {
     }
 
     main_fn();
+
+    //ownership in rust
+
+    //Example1:passing stack variables inside functions
+    fn fn_1(){
+        let x =5;
+        let y = 5;
+        println!("{}",sum(x,y));
+
+    }
+    fn_1();
+     
+     
+     fn scope_fn(){
+        let x = 12;
+        {
+            let y = 21;
+            println!("inside y scope: {}",  y)
+        }
+        println!(" x level scope: {}",x);
+     }
+     scope_fn();
+
+     fn rhiana(){
+        let s1 = String::from("Hello i am rhiana's  boyfriend");
+        let s2 = s1;
+        println!("{}",s2); //If i try to print s1 value here it wont complie and give me error for borrowed value:
+
+        
+     }
+
+     rhiana();
+
+     let my_string = String::from("my string");
+     take_myownersip(my_string);
+    //  println!("{}",my_string); //This line would couse a compile error because ownership has been moved
+
+     fn take_myownersip(some_string:String){
+        println!("{}",some_string); // `some_string` owns the data :
+        //To work this out without cloning : we can return the string here like this: return some_string; and make my_string mutable, and take refrence as my_string = take_ownership(my_string); after that println!("{}",my_string works fine.) or we can introduce new variable calle my_string_3 = take_ownership(my_string) and print that.
+       
+     }
+
     
 }
