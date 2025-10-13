@@ -164,5 +164,24 @@ fn main() {
        
      }
 
+     //BORROWING AND REFRENCES 
+
+     fn borrow(){
+        let mut s1 = String::from("hello");
+        let s2 =  &s1;
+        println!("s2:{}",s2);
+        println!("s1: {}",s1);
+        borrow_ref(&s2);
+        update_str(&mut s1);
+
+     }
+     borrow();
+     fn borrow_ref(some_string:&String){
+        println!("{}",some_string);
+     }
+     fn update_str(s: &mut String){
+        s.push_str(" world");
+        println!("{}",s);
+     }
     
 }
