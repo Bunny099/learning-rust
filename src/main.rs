@@ -164,7 +164,7 @@ fn main() {
        
      }
 
-     //BORROWING AND REFRENCES 
+     //Borrowing and refrences
 
      fn borrow(){
         let mut s1 = String::from("hello");
@@ -183,5 +183,26 @@ fn main() {
         s.push_str(" world");
         println!("{}",s);
      }
+
+     //Structs
+     struct User{
+        active:bool,
+        name:String,
+        age:i32,
+        email:String,
+        count:u64
+     }
+     let mut user1= User{
+        active:true,
+        name: String::from("jayesh"),
+        age:21,
+        email: String::from("jayesh@gmail.com"),
+        count:23
+
+     };
+     println!("The name is: {} , Status is: {} ,  Age: {}, Email: {}, count: {}",user1.name, user1.active, user1.age , user1.email, user1.count);
+     user1.name.push_str(" khuman");
+     println!("{}",user1.name);
+     
     
 }
