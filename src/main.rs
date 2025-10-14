@@ -204,5 +204,23 @@ fn main() {
      user1.name.push_str(" khuman");
      println!("{}",user1.name);
      
-    
+     //Implementing structs
+     struct Rect{
+        height:u32,
+        width:u32
+     }
+     impl Rect {
+            fn area(&self)->u32{
+                self.height * self.width
+            }
+            fn perimeter(&self)->u32{
+                2 * ( self.height * self.width)
+            }
+     }
+    let rect = Rect{
+        height:20,
+        width:20
+    };
+    println!("Area is: {}",rect.area());
+    println!("Perimeter {}",rect.perimeter());
 }
