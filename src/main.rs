@@ -1,7 +1,5 @@
 use std::fs;
 
-
-
 fn main() {
     //variables
     let x: i32 = 883;
@@ -74,52 +72,58 @@ fn main() {
     }
 
     //memoery management
-    // mutable 
+    // mutable
 
-        let mut  muta  = String::from ("hello");
-        muta.push_str("jayesh bro well done");
-         println!("mutable {}",muta);
+    let mut muta = String::from("hello");
+    muta.push_str("jayesh bro well done");
+    println!("mutable {}", muta);
     //stack and heap
 
-    fn one(){
+    fn one() {
         let num = 21;
         println!("function one");
         second(num);
     }
-    fn second(num:i32){
+    fn second(num: i32) {
         println!("function two");
-        println!("{}",num)
+        println!("{}", num)
     }
     one();
 
-    fn main_fn(){
+    fn main_fn() {
         stack_fn();
         heap_fn();
         update_string();
-    
     }
-    fn  stack_fn(){
-        let a:i32 = 21;
-        let b:i32 = 12;
-        let c :i32 = a+b;
-        println!("stack function: The sum of {} and {} is {}",a,b,c)
-
+    fn stack_fn() {
+        let a: i32 = 21;
+        let b: i32 = 12;
+        let c: i32 = a + b;
+        println!("stack function: The sum of {} and {} is {}", a, b, c)
     }
-    fn heap_fn(){
+    fn heap_fn() {
         let s1 = String::from("This is first string");
         let s2 = String::from("This is second string!");
-        let combine = format!("{} {}",s1,s2);
-        println!("Combine: {}",combine);
-
+        let combine = format!("{} {}", s1, s2);
+        println!("Combine: {}", combine);
     }
-    fn update_string(){ 
+    fn update_string() {
         let mut s1 = String::from("update");
         println!("Before Update: {}", s1);
-        println!("capacity: {} , Length: {} , pointer: {:p}",s1.capacity(),s1.len(),s1.as_ptr());
+        println!(
+            "capacity: {} , Length: {} , pointer: {:p}",
+            s1.capacity(),
+            s1.len(),
+            s1.as_ptr()
+        );
         s1.push_str(" additional string data to store so capacity some how changes");
-        println!("updated string: {}",s1);
-        println!("capacity: {} , Length: {} , pointer: {:p}",s1.capacity(),s1.len(),s1.as_ptr());
-
+        println!("updated string: {}", s1);
+        println!(
+            "capacity: {} , Length: {} , pointer: {:p}",
+            s1.capacity(),
+            s1.len(),
+            s1.as_ptr()
+        );
     }
 
     main_fn();
@@ -127,149 +131,155 @@ fn main() {
     //ownership in rust
 
     //Example1:passing stack variables inside functions
-    fn fn_1(){
-        let x =5;
+    fn fn_1() {
+        let x = 5;
         let y = 5;
-        println!("{}",sum(x,y));
-
+        println!("{}", sum(x, y));
     }
     fn_1();
-     
-     
-     fn scope_fn(){
+
+    fn scope_fn() {
         let x = 12;
         {
             let y = 21;
-            println!("inside y scope: {}",  y)
+            println!("inside y scope: {}", y)
         }
-        println!(" x level scope: {}",x);
-     }
-     scope_fn();
+        println!(" x level scope: {}", x);
+    }
+    scope_fn();
 
-     fn rhiana(){
+    fn rhiana() {
         let s1 = String::from("Hello i am rhiana's  boyfriend");
         let s2 = s1;
-        println!("{}",s2); //If i try to print s1 value here it wont complie and give me error for borrowed value:
+        println!("{}", s2); //If i try to print s1 value here it wont complie and give me error for borrowed value:
+    }
 
-        
-     }
+    rhiana();
 
-     rhiana();
-
-     let my_string = String::from("my string");
-     take_myownersip(my_string);
+    let my_string = String::from("my string");
+    take_myownersip(my_string);
     //  println!("{}",my_string); //This line would couse a compile error because ownership has been moved
 
-     fn take_myownersip(some_string:String){
-        println!("{}",some_string); // `some_string` owns the data :
+    fn take_myownersip(some_string: String) {
+        println!("{}", some_string); // `some_string` owns the data :
         //To work this out without cloning : we can return the string here like this: return some_string; and make my_string mutable, and take refrence as my_string = take_ownership(my_string); after that println!("{}",my_string works fine.) or we can introduce new variable calle my_string_3 = take_ownership(my_string) and print that.
-       
-     }
+    }
 
-     //Borrowing and refrences
+    //Borrowing and refrences
 
-     fn borrow(){
+    fn borrow() {
         let mut s1 = String::from("hello");
-        let s2 =  &s1;
-        println!("s2:{}",s2);
-        println!("s1: {}",s1);
+        let s2 = &s1;
+        println!("s2:{}", s2);
+        println!("s1: {}", s1);
         borrow_ref(&s2);
         update_str(&mut s1);
-
-     }
-     borrow();
-     fn borrow_ref(some_string:&String){
-        println!("{}",some_string);
-     }
-     fn update_str(s: &mut String){
-        s.push_str(" world");
-        println!("{}",s);
-     }
-
-     //Structs
-     struct User{
-        active:bool,
-        name:String,
-        age:i32,
-        email:String,
-        count:u64
-     }
-     let mut user1= User{
-        active:true,
-        name: String::from("jayesh"),
-        age:21,
-        email: String::from("jayesh@gmail.com"),
-        count:23
-
-     };
-     println!("The name is: {} , Status is: {} ,  Age: {}, Email: {}, count: {}",user1.name, user1.active, user1.age , user1.email, user1.count);
-     user1.name.push_str(" khuman");
-     println!("{}",user1.name);
-     
-     //Implementing structs
-     struct Rect{
-        height:u32,
-        width:u32
-     }
-     impl Rect {
-            fn area(&self)->u32{
-                self.height * self.width
-            }
-            fn perimeter(&self)->u32{
-                2 * ( self.height * self.width)
-            }
-     }
-    let rect = Rect{
-        height:20,
-        width:20
-    };
-    println!("Area is: {}",rect.area());
-    println!("Perimeter {}",rect.perimeter());
-
-    //enums and pattern matching
-    
-    enum Shape{
-        Circle(f64),
-        Square(f64),
-        Reactangle(f64,f64)
     }
-    fn calculate_area(shape:Shape)->f64{
-        match shape {
-            Shape::Circle(radius)=> {
-                println!("hey circle");
-                3.14 * radius *radius
-            },
-            Shape::Square(side_length)=> side_length * side_length,
-            Shape::Reactangle(width,height, )=> width * height
+    borrow();
+    fn borrow_ref(some_string: &String) {
+        println!("{}", some_string);
+    }
+    fn update_str(s: &mut String) {
+        s.push_str(" world");
+        println!("{}", s);
+    }
 
+    //Structs
+    struct User {
+        active: bool,
+        name: String,
+        age: i32,
+        email: String,
+        count: u64,
+    }
+    let mut user1 = User {
+        active: true,
+        name: String::from("jayesh"),
+        age: 21,
+        email: String::from("jayesh@gmail.com"),
+        count: 23,
+    };
+    println!(
+        "The name is: {} , Status is: {} ,  Age: {}, Email: {}, count: {}",
+        user1.name, user1.active, user1.age, user1.email, user1.count
+    );
+    user1.name.push_str(" khuman");
+    println!("{}", user1.name);
+
+    //Implementing structs
+    struct Rect {
+        height: u32,
+        width: u32,
+    }
+    impl Rect {
+        fn area(&self) -> u32 {
+            self.height * self.width
+        }
+        fn perimeter(&self) -> u32 {
+            2 * (self.height * self.width)
         }
     }
-        let circle = Shape::Circle(5.0);
-        let square = Shape::Square(10.0);
-        let rectangle = Shape::Reactangle(12.00,2.00);
-        println!("Area of circle: {}", calculate_area(circle));
-        println!("Area of square: {}",calculate_area(square));
-        println!("Area of reactangle: {}",calculate_area(rectangle));
+    let rect = Rect {
+        height: 20,
+        width: 20,
+    };
+    println!("Area is: {}", rect.area());
+    println!("Perimeter {}", rect.perimeter());
 
-        //Error handling 
-        
-        fn read_file(){
-           let res= fs::read_to_string("example.txt");
-           println!("hi there");
-           match  res {
-            Ok(content)=>{
-                println!("File content: {}",content)
-            },
-            Err(err)=>{
-                println!("Error: {}",err)
+    //enums and pattern matching
+
+    enum Shape {
+        Circle(f64),
+        Square(f64),
+        Reactangle(f64, f64),
+    }
+    fn calculate_area(shape: Shape) -> f64 {
+        match shape {
+            Shape::Circle(radius) => {
+                println!("hey circle");
+                3.14 * radius * radius
             }
-               
-           }
-           println!("hello");
-         }
-        read_file();
-      
- }
+            Shape::Square(side_length) => side_length * side_length,
+            Shape::Reactangle(width, height) => width * height,
+        }
+    }
+    let circle = Shape::Circle(5.0);
+    let square = Shape::Square(10.0);
+    let rectangle = Shape::Reactangle(12.00, 2.00);
+    println!("Area of circle: {}", calculate_area(circle));
+    println!("Area of square: {}", calculate_area(square));
+    println!("Area of reactangle: {}", calculate_area(rectangle));
 
- 
+    //Error handling
 
+    fn read_file() {
+        let res = fs::read_to_string("example.txt");
+        println!("hi there");
+        match res {
+            Ok(content) => {
+                println!("File content: {}", content)
+            }
+            Err(err) => {
+                println!("Error: {}", err)
+            }
+        }
+        println!("hello");
+    }
+    read_file();
+
+    //Option Enum
+
+    fn finder_char_a(s: String) -> Option<i32> {
+        for (index, character) in s.chars().enumerate() {
+            if character == 'a' {
+                return Some(index as i32);
+            }
+        }
+        return None;
+    }
+    let the_string = String::from("my string awe");
+    match finder_char_a(the_string) {
+        Some(index) => println!("{}", index),
+        None => println!("No a letter found in string"),
+    }
+}
