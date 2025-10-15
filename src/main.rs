@@ -1,3 +1,5 @@
+use std::fs;
+
 
 
 fn main() {
@@ -249,7 +251,25 @@ fn main() {
         println!("Area of square: {}",calculate_area(square));
         println!("Area of reactangle: {}",calculate_area(rectangle));
 
+        //Error handling 
+        
+        fn read_file(){
+           let res= fs::read_to_string("example.txt");
+           println!("hi there");
+           match  res {
+            Ok(content)=>{
+                println!("File content: {}",content)
+            },
+            Err(err)=>{
+                println!("Error: {}",err)
+            }
+               
+           }
+           println!("hello");
+         }
+        read_file();
+      
  }
 
-
+ 
 
