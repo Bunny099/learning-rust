@@ -223,4 +223,33 @@ fn main() {
     };
     println!("Area is: {}",rect.area());
     println!("Perimeter {}",rect.perimeter());
-}
+
+    //enums and pattern matching
+    
+    enum Shape{
+        Circle(f64),
+        Square(f64),
+        Reactangle(f64,f64)
+    }
+    fn calculate_area(shape:Shape)->f64{
+        match shape {
+            Shape::Circle(radius)=> {
+                println!("hey circle");
+                3.14 * radius *radius
+            },
+            Shape::Square(side_length)=> side_length * side_length,
+            Shape::Reactangle(width,height, )=> width * height
+
+        }
+    }
+        let circle = Shape::Circle(5.0);
+        let square = Shape::Square(10.0);
+        let rectangle = Shape::Reactangle(12.00,2.00);
+        println!("Area of circle: {}", calculate_area(circle));
+        println!("Area of square: {}",calculate_area(square));
+        println!("Area of reactangle: {}",calculate_area(rectangle));
+
+ }
+
+
+
