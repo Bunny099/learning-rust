@@ -1,5 +1,7 @@
 use std::fs;
 
+use rand::prelude::*;
+
 fn main() {
     //variables
     let x: i32 = 883;
@@ -282,4 +284,13 @@ fn main() {
         Some(index) => println!("{}", index),
         None => println!("No a letter found in string"),
     }
+
+    //external Dependencies  rand
+    //cargo add <dep--name> --> example: cargo add rand
+
+    fn random_number(){
+        let mut rng = rand::rng();
+        println!("Random number: {}",rng.random::<i32>());
+    }
+    random_number();
 }
